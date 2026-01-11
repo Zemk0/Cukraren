@@ -1,0 +1,74 @@
+[
+    {
+        "id": "1",
+        "name": "Šachové rezy",
+        "description": "Klasický dezert s vanilkovým a kakaovým krémom",
+        "price": "2,50 €",
+        "category": "zakusky",
+        "image": "assets/images/produkty/sachove-rezy.jpg"
+    },
+    {
+        "id": "2",
+        "name": "Orechové koláče",
+        "description": "Domáce koláče s orechovým posypom",
+        "price": "1,80 €",
+        "category": "kolace",
+        "image": "assets/images/produkty/orechove-kolace.jpg"
+    },
+    {
+        "id": "3",
+        "name": "Čokoládová torta",
+        "description": "Luxusná torta s čokoládovým krémom",
+        "price": "25,00 €",
+        "category": "torty",
+        "image": "assets/images/produkty/cokoladova-torta.jpg"
+    },
+    {
+        "id": "4",
+        "name": "Vanilkové rožky",
+        "description": "Tradičné vianočné pečivo",
+        "price": "12,00 € /kg",
+        "category": "pecivo",
+        "image": "assets/images/produkty/vanilkove-rozky.jpg"
+    },
+    {
+        "id": "5",
+        "name": "Makové rezy",
+        "description": "Lahodné rezy s makovou náplňou",
+        "price": "2,30 €",
+        "category": "zakusky",
+        "image": "assets/images/produkty/makove-rezy.jpg"
+    },
+    {
+        "id": "6",
+        "name": "Ovocná torta",
+        "description": "Torta s čerstvým ovocím a krémom",
+        "price": "28,00 €",
+        "category": "torty",
+        "image": "assets/images/produkty/ovocna-torta.jpg"
+    },
+    {
+        "id": "7",
+        "name": "Linecké koláčiky",
+        "description": "Krehké koláčiky s džemom",
+        "price": "10,00 € /kg",
+        "category": "pecivo",
+        "image": "assets/images/produkty/linecke-kolaciky.jpg"
+    },
+    {
+        "id": "8",
+        "name": "Medovník",
+        "description": "Tradičný medový koláč s krémom",
+        "price": "3,20 €",
+        "category": "kolace",
+        "image": "assets/images/produkty/medovnik.jpg"
+    },
+    {
+        "id": "9",
+        "name": "Jahodová torta",
+        "description": "Torta s čerstvými jahodami",
+        "price": "30,00 €",
+        "category": "torty",
+        "image": "assets/images/produkty/jahodova-torta.jpg"
+    }
+]

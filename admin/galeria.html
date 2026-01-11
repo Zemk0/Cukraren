@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="sk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Správa galérie - Admin - Cukráreň Janka</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+
+<body>
+    <div class="admin-container">
+
+        <!-- Admin Header -->
+        <div class="admin-header">
+            <h1>Správa Galérie</h1>
+            <p>Pridávajte a upravujte obrázky v galérii</p>
+        </div>
+
+        <!-- Admin Navigation -->
+        <nav class="admin-nav">
+            <div class="admin-nav-links">
+                <a href="index.html" class="admin-nav-link">Dashboard</a>
+                <a href="novinky.html" class="admin-nav-link">Novinky</a>
+                <a href="galeria.html" class="admin-nav-link active">Galéria</a>
+                <a href="nastavenia.html" class="admin-nav-link">Nastavenia</a>
+                <a href="../index.html" class="admin-nav-link">Späť na web</a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main>
+
+            <!-- Add Gallery Item Form -->
+            <section class="admin-section">
+                <div class="admin-section-header">
+                    <h2 class="admin-section-title">Pridať Obrázok do Galérie</h2>
+                </div>
+
+                <form id="gallery-form" class="admin-form">
+
+                    <div class="admin-form-group">
+                        <label for="gallery-title">Názov obrázka *</label>
+                        <input type="text" id="gallery-title" required placeholder="Napr. Svadobná torta">
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="gallery-image">URL obrázka *</label>
+                        <input type="text" id="gallery-image" required placeholder="assets/images/galeria/obrázok.jpg">
+                        <small>Zadajte cestu k obrázku. Príklad: assets/images/galeria/moja-torta.jpg</small>
+                    </div>
+
+                    <div class="image-preview" id="gallery-image-preview">
+                        <div class="image-preview-placeholder">Náhľad obrázka</div>
+                    </div>
+
+                    <div class="admin-form-actions">
+                        <button type="submit" class="btn-save">Pridať obrázok</button>
+                        <button type="button" class="btn-cancel"
+                            onclick="document.getElementById('gallery-form').reset();">Zrušiť</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Gallery List -->
+            <section class="admin-section">
+                <h2 class="admin-section-title">Existujúce Obrázky</h2>
+
+                <div class="admin-table-wrapper">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Obrázok</th>
+                                <th>Názov</th>
+                                <th>Akcie</th>
+                            </tr>
+                        </thead>
+                        <tbody id="gallery-list">
+                            <!-- Loaded via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Instructions -->
+            <section class="admin-section">
+                <h3>Inštrukcie na pridanie obrázkov</h3>
+                <div style="color: var(--color-text-medium); line-height: 1.8;">
+                    <p><strong>Ako pridať nový obrázok:</strong></p>
+                    <ol style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>Nahrajte obrázok do priečinka <code>assets/images/galeria/</code> na serveri</li>
+                        <li>V poli "URL obrázka" zadajte cestu: <code>assets/images/galeria/názov-obrázka.jpg</code>
+                        </li>
+                        <li>Zadajte popisný názov pre obrázok</li>
+                        <li>Kliknite na "Pridať obrázok"</li>
+                    </ol>
+                    <p style="margin-top: 1rem;"><strong>Odporúčaná veľkosť obrázkov:</strong> 1200x1200px alebo väčšie,
+                        JPG formát</p>
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="../assets/js/storage.js"></script>
+    <script src="../assets/js/admin.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="sk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ponuka produktov - Cukráreň Janka">
+    <title>Ponuka - Cukráreň Janka</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+
+<body>
+    <!-- Header & Navigation -->
+    <div id="header_nav"></div>
+
+    <script>
+        fetch("header_nav.html")
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById("header_nav").innerHTML = html;
+
+                const currentPage =
+                    window.location.pathname.split("/").pop() || "index.html";
+
+                document.querySelectorAll(".nav-link").forEach(link => {
+                    if (link.getAttribute("href") === currentPage) {
+                        link.classList.add("active");
+                        link.setAttribute("aria-current", "page");
+                    }
+                });
+            });
+    </script>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Naša Ponuka</h1>
+            <p>Vyberte si z našej širokej ponuky domácich dobrôt</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Category Filter -->
+        <section class="filter-section section-padding">
+            <div class="container">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-category="all">Všetko</button>
+                    <button class="filter-btn" data-category="kolace">Koláče</button>
+                    <button class="filter-btn" data-category="zakusky">Zákusky</button>
+                    <button class="filter-btn" data-category="torty">Torty</button>
+                    <button class="filter-btn" data-category="pecivo">Pečivo</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Grid -->
+        <section class="products-list section-padding">
+            <div class="container">
+                <div class="products-grid" id="products-grid">
+                    <!-- Products loaded via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <script>
+        fetch("footer.html")
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById("footer").innerHTML = html;
+            });
+    </script>
+
+    <script src="assets/js/storage.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/ponuka.js"></script>
+</body>
+
+</html>

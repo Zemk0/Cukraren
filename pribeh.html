@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="sk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Príbeh Cukrárne Janka">
+    <title>Príbeh - Cukráreň Janka</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+
+<body>
+    <!-- Header & Navigation -->
+    <div id="header_nav"></div>
+
+    <script>
+        fetch("header_nav.html")
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById("header_nav").innerHTML = html;
+
+                const currentPage =
+                    window.location.pathname.split("/").pop() || "index.html";
+
+                document.querySelectorAll(".nav-link").forEach(link => {
+                    if (link.getAttribute("href") === currentPage) {
+                        link.classList.add("active");
+                        link.setAttribute("aria-current", "page");
+                    }
+                });
+            });
+    </script>
+
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Náš Príbeh</h1>
+            <p>Viac ako 30 rokov tradície a kvality</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Story Section -->
+        <section class="story-section section-padding">
+            <div class="container">
+                <div class="story-content">
+                    <div class="story-image">
+                        <img src="assets/images/banner/story-main.jpg" alt="Cukráreň Janka - začiatky">
+                    </div>
+                    <div class="story-text">
+                        <h2>Začiatky</h2>
+                        <p>Naša cukráreň vznikla v roku 1995, keď sa Jana, zakladateľka a menovkyňa cukrárne, rozhodla
+                            splniť si svoj sen a otvoriť vlastnú cukráreň v srdci Žiliny. S receptami od svojej babičky
+                            a veľkým množstvom odhodlania začala piecť tie najlepšie koláče a zákusky v meste.</p>
+                        <p>Od prvého dňa sme sa zaviazali k používaniu len tých najkvalitnejších surovín a zachovaniu
+                            tradičných receptov, ktoré sa v rodine odovzdávali z generácie na generáciu.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section class="timeline-section section-padding bg-light">
+            <div class="container">
+                <h2 class="section-title">Naša História</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1995</div>
+                        <div class="timeline-content">
+                            <h3>Založenie</h3>
+                            <p>Otvorenie prvej prevádzky Cukrárne Janka na Hlavnej ulici v Žiline.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2000</div>
+                        <div class="timeline-content">
+                            <h3>Rozšírenie</h3>
+                            <p>Rozšírenie ponuky o svadobné a príležitostné torty.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2010</div>
+                        <div class="timeline-content">
+                            <h3>Modernizácia</h3>
+                            <p>Kompletná rekonštrukcia prevádzky a modernizácia vybavenia.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2020</div>
+                        <div class="timeline-content">
+                            <h3>Nová Generácia</h3>
+                            <p>Dcéra Jany, Katarína, prevzala vedenie cukrárne a priniesla nové nápady.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2026</div>
+                        <div class="timeline-content">
+                            <h3>Dnešok</h3>
+                            <p>Cukráreň Janka je známa v celom regióne ako synonymum kvality a tradície.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class="values-section section-padding">
+            <div class="container">
+                <h2 class="section-title">Naše Hodnoty</h2>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <h3>Kvalita</h3>
+                        <p>Používame len tie najlepšie suroviny od overených dodávateľov. Každý produkt kontrolujeme a
+                            dbáme na najvyšší štandard kvality.</p>
+                    </div>
+                    <div class="value-card">
+                        <h3>Tradícia</h3>
+                        <p>Naše recepty sa odovzdávajú z generácie na generáciu. Ctíme tradičné postupy a zachovávame
+                            autentické chute.</p>
+                    </div>
+                    <div class="value-card">
+                        <h3>Rodina</h3>
+                        <p>Sme rodinný podnik a k našim zákazníkom pristupujeme ako k rodine. Vaša spokojnosť je naším
+                            najväčším úspechom.</p>
+                    </div>
+                    <div class="value-card">
+                        <h3>Čerstvosť</h3>
+                        <p>Všetky naše výrobky pripravujeme denne z čerstvých surovín. Žiadne polotovary, len domáca
+                            výroba.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team-section section-padding bg-light">
+            <div class="container">
+                <h2 class="section-title">Náš Tím</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="team-image">
+                            <img src="assets/images/banner/janka.png" alt="Jana - zakladateľka">
+                        </div>
+                        <h3>Jana Nitschneiderová</h3>
+                        <p class="team-role">Zakladateľka</p>
+                        <p>Duša a srdce cukrárne.</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-image">
+                            <img src="assets/images/banner/peter.png" alt="Peter - chovateľ">
+                        </div>
+                        <h3>Peter Šimek</h3>
+                        <p class="team-role">Chovateľ</p>
+                        <p>Chovateľ rýb v našom akváriu.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <script>
+        fetch("footer.html")
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById("footer").innerHTML = html;
+            });
+    </script>
+
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

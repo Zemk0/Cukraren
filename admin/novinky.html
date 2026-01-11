@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="sk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Správa noviniek - Admin - Cukráreň Janka</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+
+<body>
+    <div class="admin-container">
+
+        <!-- Admin Header -->
+        <div class="admin-header">
+            <h1>Správa Noviniek</h1>
+            <p>Pridávajte a upravujte novinky</p>
+        </div>
+
+        <!-- Admin Navigation -->
+        <nav class="admin-nav">
+            <div class="admin-nav-links">
+                <a href="index.html" class="admin-nav-link">Dashboard</a>
+                <a href="novinky.html" class="admin-nav-link active">Novinky</a>
+                <a href="galeria.html" class="admin-nav-link">Galéria</a>
+                <a href="nastavenia.html" class="admin-nav-link">Nastavenia</a>
+                <a href="../index.html" class="admin-nav-link">Späť na web</a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main>
+
+            <!-- Add/Edit News Form -->
+            <section class="admin-section">
+                <div class="admin-section-header">
+                    <h2 class="admin-section-title">Pridať / Upraviť Novinku</h2>
+                </div>
+
+                <form id="news-form" class="admin-form">
+                    <input type="hidden" id="news-id">
+
+                    <div class="admin-form-group">
+                        <label for="news-title">Nadpis *</label>
+                        <input type="text" id="news-title" required>
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="news-excerpt">Krátky popis (pre náhľad) *</label>
+                        <textarea id="news-excerpt" rows="3" required></textarea>
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="news-content">Obsah *</label>
+                        <textarea id="news-content" rows="8" required></textarea>
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="news-image">URL obrázka</label>
+                        <input type="text" id="news-image" placeholder="assets/images/galeria/obrázok.jpg">
+                        <small>Príklad: assets/images/galeria/news-image.jpg</small>
+                    </div>
+
+                    <div class="image-preview" id="news-image-preview">
+                        <div class="image-preview-placeholder">Náhľad obrázka</div>
+                    </div>
+
+                    <div class="admin-form-actions">
+                        <button type="submit" class="btn-save">Uložiť</button>
+                        <button type="button" class="btn-cancel"
+                            onclick="document.getElementById('news-form').reset(); document.getElementById('news-id').value='';">Zrušiť</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- News List -->
+            <section class="admin-section">
+                <h2 class="admin-section-title">Existujúce Novinky</h2>
+
+                <div class="admin-table-wrapper">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Nadpis</th>
+                                <th>Dátum</th>
+                                <th>Obrázok</th>
+                                <th>Akcie</th>
+                            </tr>
+                        </thead>
+                        <tbody id="news-list">
+                            <!-- Loaded via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="../assets/js/storage.js"></script>
+    <script src="../assets/js/admin.js"></script>
+</body>
+
+</html>

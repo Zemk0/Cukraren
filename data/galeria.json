@@ -1,0 +1,47 @@
+[
+    {
+        "id": "1",
+        "title": "Svadobná torta",
+        "image": "assets/images/galeria/svadobna-torta-1.jpg"
+    },
+    {
+        "id": "2",
+        "title": "Čokoládové rezy",
+        "image": "assets/images/galeria/cokoladove-rezy.jpg"
+    },
+    {
+        "id": "3",
+        "title": "Ovocné koláče",
+        "image": "assets/images/galeria/ovocne-kolace.jpg"
+    },
+    {
+        "id": "4",
+        "title": "Detská torta",
+        "image": "assets/images/galeria/detska-torta.jpg"
+    },
+    {
+        "id": "5",
+        "title": "Makové rezy",
+        "image": "assets/images/galeria/makove-rezy.jpg"
+    },
+    {
+        "id": "6",
+        "title": "Svadobná torta 2",
+        "image": "assets/images/galeria/svadobna-torta-2.jpg"
+    },
+    {
+        "id": "7",
+        "title": "Vianočné pečivo",
+        "image": "assets/images/galeria/vianocne-pecivo.jpg"
+    },
+    {
+        "id": "8",
+        "title": "Medovník",
+        "image": "assets/images/galeria/medovnik.jpg"
+    },
+    {
+        "id": "9",
+        "title": "Ovocná torta",
+        "image": "assets/images/galeria/ovocna-torta.jpg"
+    }
+]

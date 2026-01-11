@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="sk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Cukráreň Janka</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+
+<body>
+    <div class="admin-container">
+
+        <!-- Admin Header -->
+        <div class="admin-header">
+            <h1>Admin Panel</h1>
+            <p>Správa obsahu webu Cukráreň Janka</p>
+        </div>
+
+        <!-- Admin Navigation -->
+        <nav class="admin-nav">
+            <div class="admin-nav-links">
+                <a href="index.html" class="admin-nav-link active">Dashboard</a>
+                <a href="novinky.html" class="admin-nav-link">Novinky</a>
+                <a href="galeria.html" class="admin-nav-link">Galéria</a>
+                <a href="nastavenia.html" class="admin-nav-link">Nastavenia</a>
+                <a href="../index.html" class="admin-nav-link">Späť na web</a>
+            </div>
+        </nav>
+
+        <!-- Dashboard Content -->
+        <main>
+
+            <!-- Statistics Cards -->
+            <section class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>Produkty</h3>
+                    <div class="dashboard-number" id="products-count">0</div>
+                    <p>Celkový počet produktov</p>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>Novinky</h3>
+                    <div class="dashboard-number" id="news-count">0</div>
+                    <p>Publikované novinky</p>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>Galéria</h3>
+                    <div class="dashboard-number" id="gallery-count">0</div>
+                    <p>Obrázky v galérii</p>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="admin-section">
+                <h2 class="admin-section-title">Rýchle akcie</h2>
+                <div class="admin-nav-links">
+                    <a href="novinky.html" class="btn-primary">Pridať novinku</a>
+                    <a href="galeria.html" class="btn-primary">Pridať obrázok</a>
+                    <a href="nastavenia.html" class="btn-secondary">Upraviť nastavenia</a>
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="../assets/js/storage.js"></script>
+    <script src="../assets/js/admin.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+{
+    "shopName": "Cukráreň Janka",
+    "address": "Hlavná 123",
+    "city": "010 01 Žilina",
+    "phone": "+421 123 456 789",
+    "email": "info@cukrarenjanka.sk",
+    "hours": {
+        "weekdays": "7:00 - 18:00",
+        "saturday": "8:00 - 14:00",
+        "sunday": "Zatvorené"
+    }
+}

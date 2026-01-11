@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="sk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nastavenia - Admin - Cukráreň Janka</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+
+<body>
+    <div class="admin-container">
+
+        <!-- Admin Header -->
+        <div class="admin-header">
+            <h1>Nastavenia</h1>
+            <p>Upravte kontaktné údaje a otváracie hodiny</p>
+        </div>
+
+        <!-- Admin Navigation -->
+        <nav class="admin-nav">
+            <div class="admin-nav-links">
+                <a href="index.html" class="admin-nav-link">Dashboard</a>
+                <a href="novinky.html" class="admin-nav-link">Novinky</a>
+                <a href="galeria.html" class="admin-nav-link">Galéria</a>
+                <a href="nastavenia.html" class="admin-nav-link active">Nastavenia</a>
+                <a href="../index.html" class="admin-nav-link">Späť na web</a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main>
+
+            <!-- Contact Info Form -->
+            <section class="admin-section">
+                <h2 class="admin-section-title">Kontaktné Údaje</h2>
+
+                <form id="contact-info-form" class="admin-form">
+
+                    <div class="admin-form-group">
+                        <label for="shop-name">Názov cukrárne *</label>
+                        <input type="text" id="shop-name" required>
+                    </div>
+
+                    <div class="admin-form-row">
+                        <div class="admin-form-group">
+                            <label for="shop-address">Ulica a číslo *</label>
+                            <input type="text" id="shop-address" required>
+                        </div>
+
+                        <div class="admin-form-group">
+                            <label for="shop-city">PSČ a Mesto *</label>
+                            <input type="text" id="shop-city" required>
+                        </div>
+                    </div>
+
+                    <div class="admin-form-row">
+                        <div class="admin-form-group">
+                            <label for="shop-phone">Telefón *</label>
+                            <input type="tel" id="shop-phone" required>
+                        </div>
+
+                        <div class="admin-form-group">
+                            <label for="shop-email">Email *</label>
+                            <input type="email" id="shop-email" required>
+                        </div>
+                    </div>
+
+                    <div class="admin-form-actions">
+                        <button type="submit" class="btn-save">Uložiť kontaktné údaje</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Opening Hours Form -->
+            <section class="admin-section">
+                <h2 class="admin-section-title">Otváracie Hodiny</h2>
+
+                <form id="opening-hours-form" class="admin-form">
+
+                    <div class="admin-form-group">
+                        <label for="hours-weekdays">Pondelok - Piatok *</label>
+                        <input type="text" id="hours-weekdays" required placeholder="7:00 - 18:00">
+                        <small>Formát: HH:MM - HH:MM</small>
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="hours-saturday">Sobota *</label>
+                        <input type="text" id="hours-saturday" required placeholder="8:00 - 14:00">
+                        <small>Formát: HH:MM - HH:MM</small>
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="hours-sunday">Nedeľa *</label>
+                        <input type="text" id="hours-sunday" required placeholder="Zatvorené">
+                        <small>Zadajte "Zatvorené" alebo čas v formáte HH:MM - HH:MM</small>
+                    </div>
+
+                    <div class="admin-form-actions">
+                        <button type="submit" class="btn-save">Uložiť otváracie hodiny</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Info Section -->
+            <section class="admin-section">
+                <h3>Informácie</h3>
+                <div class="alert alert-info">
+                    <p><strong>Poznámka:</strong> Zmeny sa prejavia na celom webe po uložení. Údaje sa zobrazia v
+                        kontaktnej sekcii a v pätičke stránky.</p>
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="../assets/js/storage.js"></script>
+    <script src="../assets/js/admin.js"></script>
+</body>
+
+</html>

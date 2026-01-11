@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="sk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Galéria - Cukráreň Janka">
+    <title>Galéria - Cukráreň Janka</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/gallery.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+
+<body>
+    <!-- Header & Navigation -->
+    <div id="header_nav"></div>
+
+    <script>
+        fetch("header_nav.html")
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById("header_nav").innerHTML = html;
+
+                const currentPage =
+                    window.location.pathname.split("/").pop() || "index.html";
+
+                document.querySelectorAll(".nav-link").forEach(link => {
+                    if (link.getAttribute("href") === currentPage) {
+                        link.classList.add("active");
+                        link.setAttribute("aria-current", "page");
+                    }
+                });
+            });
+    </script>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Galéria</h1>
+            <p>Pozrite si našu tvorbu</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content"> <!-- Gallery Grid -->
+        <section class="gallery-section section-padding">
+            <div class="container">
+                <div class="gallery-grid" id="gallery-grid">
+                    <!-- Gallery items loaded via JavaScript -->
+                </div>
+            </div>
+        </section> <!-- Lightbox Modal -->
+        <div class="lightbox" id="lightbox">
+            <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
+            <button class="lightbox-prev" aria-label="Previous image">&#10094;</button>
+            <button class="lightbox-next" aria-label="Next image">&#10095;</button>
+            <img src="" alt="" class="lightbox-image" id="lightbox-image">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <script>
+        fetch("footer.html")
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById("footer").innerHTML = html;
+            });
+    </script>
+
+    <script src="assets/js/storage.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/galeria.js"></script>
+</body>
+
+</html>
+````
