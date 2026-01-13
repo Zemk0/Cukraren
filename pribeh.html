@@ -19,10 +19,7 @@
             .then(res => res.text())
             .then(html => {
                 document.getElementById("header_nav").innerHTML = html;
-
-                const currentPage =
-                    window.location.pathname.split("/").pop() || "index.html";
-
+                const currentPage = window.location.pathname.split("/").pop() || "index.html";
                 document.querySelectorAll(".nav-link").forEach(link => {
                     if (link.getAttribute("href") === currentPage) {
                         link.classList.add("active");
@@ -32,32 +29,25 @@
             });
     </script>
 
-
     <!-- Page Header -->
     <section class="page-header">
         <div class="container">
-            <h1>Náš Príbeh</h1>
-            <p>Viac ako 30 rokov tradície a kvality</p>
+            <h1 id="page-title"></h1>
+            <p id="page-subtitle"></p>
         </div>
     </section>
 
-    <!-- Main Content -->
     <main class="main-content">
-
         <!-- Story Section -->
         <section class="story-section section-padding">
             <div class="container">
                 <div class="story-content">
                     <div class="story-image">
-                        <img src="assets/images/banner/story-main.jpg" alt="Cukráreň Janka - začiatky">
+                        <img id="story-image" src="" alt="">
                     </div>
                     <div class="story-text">
-                        <h2>Začiatky</h2>
-                        <p>Naša cukráreň vznikla v roku 1995, keď sa Jana, zakladateľka a menovkyňa cukrárne, rozhodla
-                            splniť si svoj sen a otvoriť vlastnú cukráreň v srdci Žiliny. S receptami od svojej babičky
-                            a veľkým množstvom odhodlania začala piecť tie najlepšie koláče a zákusky v meste.</p>
-                        <p>Od prvého dňa sme sa zaviazali k používaniu len tých najkvalitnejších surovín a zachovaniu
-                            tradičných receptov, ktoré sa v rodine odovzdávali z generácie na generáciu.</p>
+                        <h2 id="story-title"></h2>
+                        <div id="story-paragraphs"></div>
                     </div>
                 </div>
             </div>
@@ -67,43 +57,7 @@
         <section class="timeline-section section-padding bg-light">
             <div class="container">
                 <h2 class="section-title">Naša História</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-year">1995</div>
-                        <div class="timeline-content">
-                            <h3>Založenie</h3>
-                            <p>Otvorenie prvej prevádzky Cukrárne Janka na Hlavnej ulici v Žiline.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-year">2000</div>
-                        <div class="timeline-content">
-                            <h3>Rozšírenie</h3>
-                            <p>Rozšírenie ponuky o svadobné a príležitostné torty.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-year">2010</div>
-                        <div class="timeline-content">
-                            <h3>Modernizácia</h3>
-                            <p>Kompletná rekonštrukcia prevádzky a modernizácia vybavenia.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-year">2020</div>
-                        <div class="timeline-content">
-                            <h3>Nová Generácia</h3>
-                            <p>Dcéra Jany, Katarína, prevzala vedenie cukrárne a priniesla nové nápady.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-year">2026</div>
-                        <div class="timeline-content">
-                            <h3>Dnešok</h3>
-                            <p>Cukráreň Janka je známa v celom regióne ako synonymum kvality a tradície.</p>
-                        </div>
-                    </div>
-                </div>
+                <div id="timeline" class="timeline"></div>
             </div>
         </section>
 
@@ -111,28 +65,7 @@
         <section class="values-section section-padding">
             <div class="container">
                 <h2 class="section-title">Naše Hodnoty</h2>
-                <div class="values-grid">
-                    <div class="value-card">
-                        <h3>Kvalita</h3>
-                        <p>Používame len tie najlepšie suroviny od overených dodávateľov. Každý produkt kontrolujeme a
-                            dbáme na najvyšší štandard kvality.</p>
-                    </div>
-                    <div class="value-card">
-                        <h3>Tradícia</h3>
-                        <p>Naše recepty sa odovzdávajú z generácie na generáciu. Ctíme tradičné postupy a zachovávame
-                            autentické chute.</p>
-                    </div>
-                    <div class="value-card">
-                        <h3>Rodina</h3>
-                        <p>Sme rodinný podnik a k našim zákazníkom pristupujeme ako k rodine. Vaša spokojnosť je naším
-                            najväčším úspechom.</p>
-                    </div>
-                    <div class="value-card">
-                        <h3>Čerstvosť</h3>
-                        <p>Všetky naše výrobky pripravujeme denne z čerstvých surovín. Žiadne polotovary, len domáca
-                            výroba.</p>
-                    </div>
-                </div>
+                <div id="values-grid" class="values-grid"></div>
             </div>
         </section>
 
@@ -140,41 +73,78 @@
         <section class="team-section section-padding bg-light">
             <div class="container">
                 <h2 class="section-title">Náš Tím</h2>
-                <div class="team-grid">
-                    <div class="team-member">
-                        <div class="team-image">
-                            <img src="assets/images/banner/janka.png" alt="Jana - zakladateľka">
-                        </div>
-                        <h3>Jana Nitschneiderová</h3>
-                        <p class="team-role">Zakladateľka</p>
-                        <p>Duša a srdce cukrárne.</p>
-                    </div>
-                    <div class="team-member">
-                        <div class="team-image">
-                            <img src="assets/images/banner/peter.png" alt="Peter - chovateľ">
-                        </div>
-                        <h3>Peter Šimek</h3>
-                        <p class="team-role">Chovateľ</p>
-                        <p>Chovateľ rýb v našom akváriu.</p>
-                    </div>
-                </div>
+                <div id="team-grid" class="team-grid"></div>
             </div>
         </section>
-
     </main>
 
     <!-- Footer -->
     <div id="footer"></div>
-
     <script>
         fetch("footer.html")
             .then(res => res.text())
-            .then(html => {
-                document.getElementById("footer").innerHTML = html;
+            .then(html => document.getElementById("footer").innerHTML = html);
+
+        fetch("data/pribeh.json")
+            .then(res => res.json())
+            .then(data => {
+                // Page header
+                document.getElementById("page-title").textContent = data.pageHeader.title;
+                document.getElementById("page-subtitle").textContent = data.pageHeader.subtitle;
+
+                // Story section
+                document.getElementById("story-title").textContent = data.storySection.title;
+                const storyImg = document.getElementById("story-image");
+                storyImg.src = data.storySection.image;
+                storyImg.alt = data.storySection.imageAlt;
+                const storyParagraphs = document.getElementById("story-paragraphs");
+                data.storySection.paragraphs.forEach(p => {
+                    const para = document.createElement("p");
+                    para.textContent = p;
+                    storyParagraphs.appendChild(para);
+                });
+
+                // Timeline
+                const timeline = document.getElementById("timeline");
+                data.timelineSection.forEach(item => {
+                    const div = document.createElement("div");
+                    div.classList.add("timeline-item");
+                    div.innerHTML = `
+                        <div class="timeline-year">${item.year}</div>
+                        <div class="timeline-content">
+                            <h3>${item.title}</h3>
+                            <p>${item.description}</p>
+                        </div>
+                    `;
+                    timeline.appendChild(div);
+                });
+
+                // Values
+                const valuesGrid = document.getElementById("values-grid");
+                data.valuesSection.forEach(value => {
+                    const div = document.createElement("div");
+                    div.classList.add("value-card");
+                    div.innerHTML = `<h3>${value.title}</h3><p>${value.description}</p>`;
+                    valuesGrid.appendChild(div);
+                });
+
+                // Team
+                const teamGrid = document.getElementById("team-grid");
+                data.teamSection.forEach(member => {
+                    const div = document.createElement("div");
+                    div.classList.add("team-member");
+                    div.innerHTML = `
+                        <div class="team-image">
+                            <img src="${member.image}" alt="${member.alt}">
+                        </div>
+                        <h3>${member.name}</h3>
+                        <p class="team-role">${member.role}</p>
+                        <p>${member.description}</p>
+                    `;
+                    teamGrid.appendChild(div);
+                });
             });
     </script>
-
-    <script src="assets/js/main.js"></script>
 </body>
 
 </html>

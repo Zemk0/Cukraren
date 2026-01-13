@@ -1,0 +1,76 @@
+{
+    "pageHeader": {
+        "title": "Náš Príbeh",
+        "subtitle": "Viac ako 30 rokov tradície a kvality"
+    },
+    "storySection": {
+        "image": "assets/images/banner/placeholder.png",
+        "imageAlt": "Cukráreň Janka - začiatky",
+        "title": "Začiatky",
+        "paragraphs": [
+            "Naša cukráreň vznikla v roku 1995, keď sa Jana, zakladateľka a menovkyňa cukrárne, rozhodla splniť si svoj sen a otvoriť vlastnú cukráreň v srdci Žiliny. S receptami od svojej babičky a veľkým množstvom odhodlania začala piecť tie najlepšie koláče a zákusky v meste.",
+            "Od prvého dňa sme sa zaviazali k používaniu len tých najkvalitnejších surovín a zachovaniu tradičných receptov, ktoré sa v rodine odovzdávali z generácie na generáciu."
+        ]
+    },
+    "timelineSection": [
+        {
+            "year": "1995",
+            "title": "Založenie",
+            "description": "Otvorenie prvej prevádzky Cukrárne Janka na Hlavnej ulici v Žiline."
+        },
+        {
+            "year": "2000",
+            "title": "Rozšírenie",
+            "description": "Rozšírenie ponuky o svadobné a príležitostné torty."
+        },
+        {
+            "year": "2010",
+            "title": "Modernizácia",
+            "description": "Kompletná rekonštrukcia prevádzky a modernizácia vybavenia."
+        },
+        {
+            "year": "2020",
+            "title": "Nová Generácia",
+            "description": "Dcéra Jany, Katarína, prevzala vedenie cukrárne a priniesla nové nápady."
+        },
+        {
+            "year": "2026",
+            "title": "Dnešok",
+            "description": "Cukráreň Janka je známa v celom regióne ako synonymum kvality a tradície."
+        }
+    ],
+    "valuesSection": [
+        {
+            "title": "Kvalita",
+            "description": "Používame len tie najlepšie suroviny od overených dodávateľov. Každý produkt kontrolujeme a dbáme na najvyšší štandard kvality."
+        },
+        {
+            "title": "Tradícia",
+            "description": "Naše recepty sa odovzdávajú z generácie na generáciu. Ctíme tradičné postupy a zachovávame autentické chute."
+        },
+        {
+            "title": "Rodina",
+            "description": "Sme rodinný podnik a k našim zákazníkom pristupujeme ako k rodine. Vaša spokojnosť je naším najväčším úspechom."
+        },
+        {
+            "title": "Čerstvosť",
+            "description": "Všetky naše výrobky pripravujeme denne z čerstvých surovín. Žiadne polotovary, len domáca výroba."
+        }
+    ],
+    "teamSection": [
+        {
+            "name": "Jana Nitschneiderová",
+            "role": "Zakladateľka",
+            "description": "Duša a srdce cukrárne.",
+            "image": "assets/images/banner/placeholder.png",
+            "alt": "Jana - zakladateľka"
+        },
+        {
+            "name": "Peter Šimek",
+            "role": "Chovateľ",
+            "description": "Chovateľ rýb v našom akváriu.",
+            "image": "assets/images/banner/placeholder.png",
+            "alt": "Peter - chovateľ"
+        }
+    ]
+}
