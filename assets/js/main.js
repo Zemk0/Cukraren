@@ -2,10 +2,8 @@
    MAIN JAVASCRIPT - CUKRÁREŇ JANKA
    ========================================== */
 
-// Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     
-    // Initialize all components
     initMobileMenu();
     initSmoothScroll();
     initContactForm();

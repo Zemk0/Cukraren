@@ -17,7 +17,6 @@ async function loadGallery() {
     const container = document.getElementById('gallery-grid');
     if (!container) return;
     
-    // Show loading
     container.innerHTML = '<p style="text-align: center; color: var(--color-text-medium); grid-column: 1/-1;">Načítavam galériu...</p>';
     
     try {
@@ -38,7 +37,6 @@ async function loadGallery() {
             </div>
         `).join('');
         
-        // Add click event to gallery items
         const galleryItems = document.querySelectorAll('.gallery-item');
         galleryItems.forEach(item => {
             item.addEventListener('click', function() {
@@ -60,27 +58,23 @@ function initLightbox() {
     
     if (!lightbox) return;
     
-    // Close lightbox
     closeBtn.addEventListener('click', closeLightbox);
     
-    // Previous image
     prevBtn.addEventListener('click', function() {
         navigateLightbox(-1);
     });
     
-    // Next image
     nextBtn.addEventListener('click', function() {
         navigateLightbox(1);
     });
     
-    // Close on background click
+ 
     lightbox.addEventListener('click', function(e) {
         if (e.target === lightbox) {
             closeLightbox();
         }
     });
     
-    // Keyboard navigation
     document.addEventListener('keydown', function(e) {
         if (!lightbox.classList.contains('active')) return;
         
@@ -126,7 +120,6 @@ function closeLightbox() {
 function navigateLightbox(direction) {
     currentImageIndex += direction;
     
-    // Loop around
     if (currentImageIndex < 0) {
         currentImageIndex = galleryImages.length - 1;
     } else if (currentImageIndex >= galleryImages.length) {
