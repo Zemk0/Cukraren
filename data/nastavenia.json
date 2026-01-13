@@ -1,12 +1,12 @@
 {
     "shopName": "Cukráreň Janka",
-    "address": "Hlavná 123",
-    "city": "010 01 Žilina",
+    "address": "Centrum 2 93/55",
+    "city": "018 41 Dubnica nad Váhom",
     "phone": "+421 123 456 789",
     "email": "info@cukrarenjanka.sk",
     "hours": {
-        "weekdays": "7:00 - 18:00",
-        "saturday": "8:00 - 14:00",
-        "sunday": "Zatvorené"
+        "weekdays": "6:00 - 18:00",
+        "saturday": "7:00 - 18:00",
+        "sunday": "9:00 - 18:00"
     }
 }

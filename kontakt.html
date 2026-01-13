@@ -15,16 +15,12 @@
 <body>
     <!-- Header & Navigation -->
     <div id="header_nav"></div>
-
     <script>
         fetch("header_nav.html")
             .then(res => res.text())
             .then(html => {
                 document.getElementById("header_nav").innerHTML = html;
-
-                const currentPage =
-                    window.location.pathname.split("/").pop() || "index.html";
-
+                const currentPage = window.location.pathname.split("/").pop() || "index.html";
                 document.querySelectorAll(".nav-link").forEach(link => {
                     if (link.getAttribute("href") === currentPage) {
                         link.classList.add("active");
@@ -54,17 +50,17 @@
 
                     <div class="contact-item">
                         <h3>📍 Adresa</h3>
-                        <p>Hlavná 123<br>010 01 Žilina<br>Slovensko</p>
+                        <p id="contact-address">Načítavam...</p>
                     </div>
 
                     <div class="contact-item">
                         <h3>📞 Telefón</h3>
-                        <p><a href="tel:+421123456789">+421 123 456 789</a></p>
+                        <p><a id="contact-phone" href="#">Načítavam...</a></p>
                     </div>
 
                     <div class="contact-item">
                         <h3>✉️ Email</h3>
-                        <p><a href="mailto:info@cukrarenjanka.sk">info@cukrarenjanka.sk</a></p>
+                        <p><a id="contact-email" href="#">Načítavam...</a></p>
                     </div>
 
                     <div class="contact-item">
@@ -72,15 +68,15 @@
                         <table class="hours-table">
                             <tr>
                                 <td>Pondelok - Piatok:</td>
-                                <td><strong>7:00 - 18:00</strong></td>
+                                <td><strong id="hours-weekdays">Načítavam...</strong></td>
                             </tr>
                             <tr>
                                 <td>Sobota:</td>
-                                <td><strong>8:00 - 14:00</strong></td>
+                                <td><strong id="hours-saturday">Načítavam...</strong></td>
                             </tr>
                             <tr>
                                 <td>Nedeľa:</td>
-                                <td><strong>Zatvorené</strong></td>
+                                <td><strong id="hours-sunday">Načítavam...</strong></td>
                             </tr>
                         </table>
                     </div>
@@ -94,10 +90,9 @@
             <div class="map-container">
                 <div class="map-placeholder">
                     <div class="map-overlay">
-                        <h3>Cukráreň Janka</h3>
-                        <p>Dubnica nad Váhom</p>
-                        <a href="https://www.google.com/maps/place/Cukr%C3%A1re%C5%88+JANKA+-+Dubnica+nad+V%C3%A1hom/@48.9580161,18.1749981,17z/data=!3m1!4b1!4m6!3m5!1s0x471499bdcf70f5c1:0xc75721afc6ddd22c!8m2!3d48.9580161!4d18.177573!16s%2Fg%2F12mkvpb0m?entry=ttu&g_ep=EgoyMDI2MDEwNy4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D"
-                            target="_blank" class="btn-secondary">
+                        <h3 id="shop-name">Načítavam...</h3>
+                        <p id="shop-city">Načítavam...</p>
+                        <a id="map-link" href="#" target="_blank" class="btn-secondary">
                             Otvoriť v Mapách
                         </a>
                     </div>
@@ -105,19 +100,41 @@
             </div>
         </section>
 
-
-
     </main>
 
     <!-- Footer -->
     <div id="footer"></div>
-
     <script>
         fetch("footer.html")
             .then(res => res.text())
             .then(html => {
                 document.getElementById("footer").innerHTML = html;
             });
+    </script>
+
+    <!-- Fetch settings JSON -->
+    <script>
+        fetch("data/nastavenia.json")
+            .then(res => res.json())
+            .then(data => {
+                // Contact info
+                document.getElementById("contact-address").innerHTML = `${data.address}<br>${data.city}`;
+                document.getElementById("contact-phone").textContent = data.phone;
+                document.getElementById("contact-phone").href = `tel:${data.phone.replace(/\s+/g, '')}`;
+                document.getElementById("contact-email").textContent = data.email;
+                document.getElementById("contact-email").href = `mailto:${data.email}`;
+
+                // Opening hours
+                document.getElementById("hours-weekdays").textContent = data.hours.weekdays;
+                document.getElementById("hours-saturday").textContent = data.hours.saturday;
+                document.getElementById("hours-sunday").textContent = data.hours.sunday;
+
+                // Map & shop info
+                document.getElementById("shop-name").textContent = data.shopName;
+                document.getElementById("shop-city").textContent = data.city;
+                document.getElementById("map-link").href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(data.shopName + ' ' + data.city)}`;
+            })
+            .catch(err => console.error('Chyba pri načítaní nastavení:', err));
     </script>
 
     <script src="assets/js/main.js"></script>
