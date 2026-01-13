@@ -8,6 +8,17 @@
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/admin.css">
     <link rel="stylesheet" href="../assets/css/responsive.css">
+    <script>
+        (function () {
+            // Ak nie je admin prihlásený
+            if (sessionStorage.getItem('adminLogged') !== 'true') {
+                // uložíme aktuálnu URL
+                sessionStorage.setItem('redirectAfterLogin', window.location.href);
+                // presmerujeme na login
+                window.location.href = '../admin-login.html';
+            }
+        })();
+    </script>
 </head>
 
 <body>

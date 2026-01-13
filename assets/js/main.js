@@ -196,7 +196,7 @@ async function loadHomeNews() {
         container.innerHTML = recentNews.map(item => `
             <div class="news-card">
                 <div class="news-image">
-                    <img src="${item.image}" alt="${item.title}" onerror="this.src='assets/images/galeria/placeholder.jpg'">
+                    <img src="${item.image}" alt="${item.title}" onerror="this.src='assets/images/galeria/placeholder.png'">
                 </div>
                 <div class="news-content">
                     <div class="news-date">${formatDate(item.date)}</div>

@@ -5,7 +5,7 @@
         "excerpt": "Od 1. decembra máme v ponuke širokú škálu vianočného pečiva. Objednávky prijímame už teraz!",
         "content": "Od 1. decembra máme v ponuke širokú škálu vianočného pečiva. Pripravili sme pre vás tradičné vanilkové rožky, linecké koláčiky, medovníky a mnoho ďalších dobrôt. Objednávky prijímame už teraz telefonicky alebo osobne v našej prevádzke.",
         "date": "2026-01-05",
-        "image": "assets/images/galeria/vianocne-pecivo.jpg"
+        "image": "assets/images/galeria/placeholder.png"
     },
     {
         "id": "2",
@@ -13,7 +13,7 @@
         "excerpt": "Darujte svojím blízkym niečo výnimočné. Valentínske torty na objednávku do 10. februára.",
         "content": "Valentín sa blíži! Darujte svojím blízkym niečo výnimočné - našu domácu tortu v tvare srdca. Výber z viacerých príchutí: čokoládová, jahodová, či vanilková. Objednávky prijímame do 10. februára.",
         "date": "2026-01-03",
-        "image": "assets/images/galeria/valentinske-torty.jpg"
+        "image": "assets/images/galeria/placeholder.png"
     },
     {
         "id": "3",
@@ -21,6 +21,6 @@
         "excerpt": "Od januára máme rozšírené otváracie hodiny. Teraz otvorené aj v sobotu do 14:00.",
         "content": "Máme pre vás skvelú správu! Od januára máme rozšírené otváracie hodiny. Počas pracovných dní sme otvorení od 7:00 do 18:00 a v sobotu od 8:00 do 14:00. Tešíme sa na vašu návštevu!",
         "date": "2025-12-28",
-        "image": "assets/images/banner/shop-front.jpg"
+        "image": "assets/images/banner/placeholder.png"
     }
 ]

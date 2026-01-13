@@ -2,46 +2,46 @@
     {
         "id": "1",
         "title": "Svadobná torta",
-        "image": "assets/images/galeria/svadobna-torta-1.jpg"
+        "image": "assets/images/galeria/placeholder.png"
     },
     {
         "id": "2",
         "title": "Čokoládové rezy",
-        "image": "assets/images/galeria/cokoladove-rezy.jpg"
+        "image": "assets/images/galeria/placeholder.png"
     },
     {
         "id": "3",
         "title": "Ovocné koláče",
-        "image": "assets/images/galeria/ovocne-kolace.jpg"
+        "image": "assets/images/galeria/placeholder.png"
     },
     {
         "id": "4",
         "title": "Detská torta",
-        "image": "assets/images/galeria/detska-torta.jpg"
+        "image": "assets/images/galeria/placeholder.png"
     },
     {
         "id": "5",
         "title": "Makové rezy",
-        "image": "assets/images/galeria/makove-rezy.jpg"
+        "image": "assets/images/galeria/placeholder.png"
     },
     {
         "id": "6",
         "title": "Svadobná torta 2",
-        "image": "assets/images/galeria/svadobna-torta-2.jpg"
+        "image": "assets/images/galeria/placeholder.png"
     },
     {
         "id": "7",
         "title": "Vianočné pečivo",
-        "image": "assets/images/galeria/vianocne-pecivo.jpg"
+        "image": "assets/images/galeria/placeholder.png"
     },
     {
         "id": "8",
         "title": "Medovník",
-        "image": "assets/images/galeria/medovnik.jpg"
+        "image": "assets/images/galeria/placeholder.png"
     },
     {
         "id": "9",
         "title": "Ovocná torta",
-        "image": "assets/images/galeria/ovocna-torta.jpg"
+        "image": "assets/images/galeria/placeholder.png"
     }
 ]

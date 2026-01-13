@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="sk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <style>
+        /* Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #f8f7f5;
+            /* svetlý béžový tón */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-box {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+
+        .login-box h2 {
+            color: #b48a68;
+            /* hnedo-béžová farba */
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .login-box input:focus {
+            outline: none;
+            border-color: #b48a68;
+            box-shadow: 0 0 5px rgba(180, 138, 104, 0.4);
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 0.9rem;
+            background: #b48a68;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .login-box button:hover {
+            background: #9c6e4f;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            display: none;
+            text-align: center;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-box">
+        <h2>Admin Panel</h2>
+        <div class="error" id="error">Nesprávne prihlasovacie údaje</div>
+        <input type="text" id="username" placeholder="Používateľské meno">
+        <input type="password" id="password" placeholder="Heslo">
+        <button onclick="login()">Prihlásiť sa</button>
+        <div class="login-footer">Správa obsahu webu</div>
+    </div>
+
+    <script>
+        async function login() {
+            const user = document.getElementById('username').value.trim();
+            const pass = document.getElementById('password').value.trim();
+
+            try {
+                const res = await fetch('data/admin.json');
+                if (!res.ok) throw new Error('Nepodarilo sa načítať admin config');
+                const admin = await res.json();
+
+                if (user === admin.username && pass === admin.password) {
+                    sessionStorage.setItem('adminLogged', 'true');
+
+                    // redirect späť na stránku, z ktorej prišli
+                    let redirect = sessionStorage.getItem('redirectAfterLogin') || 'debug.html';
+                    sessionStorage.removeItem('redirectAfterLogin');
+                    window.location.href = redirect;
+                } else {
+                    document.getElementById('error').style.display = 'block';
+                }
+            } catch (e) {
+                console.error(e);
+                document.getElementById('error').textContent = 'Chyba pri načítaní admin config';
+                document.getElementById('error').style.display = 'block';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

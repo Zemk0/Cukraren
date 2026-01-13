@@ -15,7 +15,8 @@ const DataService = {
         localBasePath: 'data/',
         apiBasePath: '/api/',
         useCache: true, // Enable/disable caching
-        cachePrefix: 'cukraren_'
+        cachePrefix: 'cukraren_',
+        cacheDuration: 3600000 // 1 hour in milliseconds
     },
     
     /* ==========================================
@@ -103,7 +104,23 @@ const DataService = {
     getFromCache(key) {
         try {
             const cached = localStorage.getItem(key);
-            return cached ? JSON.parse(cached) : null;
+            if (!cached) return null;
+            
+            const data = JSON.parse(cached);
+            
+            // Check if cache has expired
+            if (data.timestamp) {
+                const now = Date.now();
+                const age = now - data.timestamp;
+                
+                if (age > this.config.cacheDuration) {
+                    console.log(`⚠ Cache expired: ${key}`);
+                    localStorage.removeItem(key);
+                    return null;
+                }
+            }
+            
+            return data.value;
         } catch (error) {
             console.error('Cache read error:', error);
             return null;
@@ -112,7 +129,11 @@ const DataService = {
     
     saveToCache(key, data) {
         try {
-            localStorage.setItem(key, JSON.stringify(data));
+            const cacheData = {
+                value: data,
+                timestamp: Date.now()
+            };
+            localStorage.setItem(key, JSON.stringify(cacheData));
             console.log(`✓ Cached: ${key}`);
         } catch (error) {
             console.error('Cache write error:', error);
@@ -122,15 +143,16 @@ const DataService = {
     clearCache(key = null) {
         if (key) {
             localStorage.removeItem(this.config.cachePrefix + key);
+            console.log(`✓ Cache cleared: ${key}`);
         } else {
             // Clear all cache with prefix
-            Object.keys(localStorage).forEach(key => {
-                if (key.startsWith(this.config.cachePrefix)) {
-                    localStorage.removeItem(key);
+            Object.keys(localStorage).forEach(storageKey => {
+                if (storageKey.startsWith(this.config.cachePrefix)) {
+                    localStorage.removeItem(storageKey);
                 }
             });
+            console.log('✓ All cache cleared');
         }
-        console.log('✓ Cache cleared');
     },
     
     /* ==========================================
@@ -141,10 +163,14 @@ const DataService = {
     
     async save(endpoint, data, method = 'POST') {
         if (this.config.mode === 'local') {
-            // Local mode: save to localStorage
+            // Local mode: save to localStorage with timestamp
             const key = this.config.cachePrefix + endpoint.replace('.json', '');
             this.saveToCache(key, data);
             console.log(`✓ Saved to localStorage: ${key}`);
+            
+            // Simulate network delay for realism
+            await new Promise(resolve => setTimeout(resolve, 200));
+            
             return { success: true, data: data };
         } else {
             // API mode: send to backend
@@ -162,11 +188,46 @@ const DataService = {
     },
     
     /* ==========================================
+       IMAGE HELPER
+       Validates and provides fallback for images
+       ========================================== */
+    
+    getImageUrl(imagePath, type = 'general') {
+        if (!imagePath) {
+            return this.getFallbackImage(type);
+        }
+        
+        // In API mode, prepend base URL if needed
+        if (this.config.mode === 'api' && !imagePath.startsWith('http')) {
+            return this.config.apiBasePath.replace('/api/', '') + imagePath;
+        }
+        
+        return imagePath;
+    },
+    
+    getFallbackImage(type) {
+        const fallbacks = {
+            product: 'assets/images/produkty/placeholder.jpg',
+            news: 'assets/images/galeria/placeholder.jpg',
+            gallery: 'assets/images/galeria/placeholder.jpg',
+            general: 'assets/images/placeholder.jpg'
+        };
+        
+        return fallbacks[type] || fallbacks.general;
+    },
+    
+    /* ==========================================
        PRODUCTS API
        ========================================== */
     
     async getProducts() {
-        return await this.fetch('produkty.json');
+        const products = await this.fetch('produkty.json');
+        
+        // Process image URLs
+        return products.map(product => ({
+            ...product,
+            image: this.getImageUrl(product.image, 'product')
+        }));
     },
     
     async saveProducts(products) {
@@ -211,7 +272,15 @@ const DataService = {
        ========================================== */
     
     async getNews() {
-        return await this.fetch('novinky.json');
+        const news = await this.fetch('novinky.json');
+        
+        // Process image URLs and sort by date (newest first)
+        return news
+            .map(item => ({
+                ...item,
+                image: this.getImageUrl(item.image, 'news')
+            }))
+            .sort((a, b) => new Date(b.date) - new Date(a.date));
     },
     
     async saveNews(news) {
@@ -257,7 +326,13 @@ const DataService = {
        ========================================== */
     
     async getGallery() {
-        return await this.fetch('galerie.json');
+        const gallery = await this.fetch('galerie.json');
+        
+        // Process image URLs
+        return gallery.map(item => ({
+            ...item,
+            image: this.getImageUrl(item.image, 'gallery')
+        }));
     },
     
     async saveGallery(gallery) {
@@ -289,6 +364,8 @@ const DataService = {
         try {
             return await this.fetch('nastavenia.json');
         } catch (error) {
+            console.log('Settings file not found, creating default...');
+            
             // Return default settings if file doesn't exist
             const defaultSettings = {
                 shopName: 'Cukráreň Janka',
@@ -302,6 +379,7 @@ const DataService = {
                     sunday: 'Zatvorené'
                 }
             };
+            
             await this.saveSettings(defaultSettings);
             return defaultSettings;
         }
@@ -311,6 +389,63 @@ const DataService = {
         settings.updatedAt = new Date().toISOString();
         const result = await this.save('nastavenia.json', settings, 'PUT');
         return result.success ? settings : null;
+    },
+    
+    /* ==========================================
+       UTILITY: Force Refresh All Data
+       ========================================== */
+    
+    async refreshAllData() {
+        console.log('🔄 Refreshing all data from source...');
+        
+        this.clearCache();
+        
+        try {
+            await Promise.all([
+                this.getProducts(),
+                this.getNews(),
+                this.getGallery(),
+                this.getSettings()
+            ]);
+            
+            console.log('✓ All data refreshed successfully');
+            return true;
+        } catch (error) {
+            console.error('✗ Error refreshing data:', error);
+            return false;
+        }
+    },
+    
+    /* ==========================================
+       UTILITY: Get Cache Status
+       ========================================== */
+    
+    getCacheStatus() {
+        const keys = Object.keys(localStorage).filter(key => 
+            key.startsWith(this.config.cachePrefix)
+        );
+        
+        const status = keys.map(key => {
+            const data = localStorage.getItem(key);
+            if (!data) return null;
+            
+            try {
+                const parsed = JSON.parse(data);
+                const age = Date.now() - (parsed.timestamp || 0);
+                const ageMinutes = Math.floor(age / 60000);
+                
+                return {
+                    key: key.replace(this.config.cachePrefix, ''),
+                    age: ageMinutes,
+                    size: new Blob([data]).size,
+                    expired: age > this.config.cacheDuration
+                };
+            } catch {
+                return null;
+            }
+        }).filter(Boolean);
+        
+        return status;
     }
 };
 

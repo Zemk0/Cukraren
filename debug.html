@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="sk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug - Cache Status</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/admin.css">
+    <style>
+        .debug-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        .debug-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+        }
+
+        .debug-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .cache-item {
+            padding: 1rem;
+            background: #f5f5f5;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+        }
+
+        .cache-item.expired {
+            background: #ffe0e0;
+        }
+    </style>
+    <script>
+        (function () {
+            // Ak nie je admin prihlásený
+            if (sessionStorage.getItem('adminLogged') !== 'true') {
+                // uložíme aktuálnu URL
+                sessionStorage.setItem('redirectAfterLogin', window.location.href);
+                // presmerujeme na login
+                window.location.href = 'admin-login.html';
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <div class="debug-container">
+        <h1>🔧 Debug Panel - Cache Status</h1>
+
+        <div class="debug-actions">
+            <button class="btn-primary" onclick="loadCacheStatus()">Refresh Status</button>
+            <button class="btn-secondary" onclick="clearAllCache()">Clear All Cache</button>
+            <button class="btn-save" onclick="refreshAllData()">Fetch Fresh Data</button>
+        </div>
+
+        <div class="debug-card">
+            <h2>Configuration</h2>
+            <pre id="config"></pre>
+        </div>
+
+        <div class="debug-card">
+            <h2>Cache Status</h2>
+            <div id="cache-status"></div>
+        </div>
+
+        <div class="debug-card">
+            <h2>Data Preview</h2>
+            <div>
+                <button class="btn-secondary" onclick="previewProducts()">Products</button>
+                <button class="btn-secondary" onclick="previewNews()">News</button>
+                <button class="btn-secondary" onclick="previewGallery()">Gallery</button>
+                <button class="btn-secondary" onclick="previewSettings()">Settings</button>
+            </div>
+            <pre id="data-preview" style="max-height: 400px; overflow: auto;"></pre>
+        </div>
+    </div>
+
+    <script src="assets/js/storage.js"></script>
+    <script>
+        // Display configuration
+        document.getElementById('config').textContent = JSON.stringify(DataService.config, null, 2);
+
+        // Load cache status
+        function loadCacheStatus() {
+            const status = DataService.getCacheStatus();
+            const container = document.getElementById('cache-status');
+
+            if (status.length === 0) {
+                container.innerHTML = '<p>No cached data</p>';
+                return;
+            }
+
+            container.innerHTML = status.map(item => `
+                <div class="cache-item ${item.expired ? 'expired' : ''}">
+                    <strong>${item.key}</strong><br>
+                    Age: ${item.age} minutes<br>
+                    Size: ${(item.size / 1024).toFixed(2)} KB<br>
+                    Status: ${item.expired ? '❌ Expired' : '✅ Valid'}
+                </div>
+            `).join('');
+        }
+
+        // Clear cache
+        function clearAllCache() {
+            if (confirm('Clear all cached data?')) {
+                DataService.clearCache();
+                alert('Cache cleared!');
+                loadCacheStatus();
+            }
+        }
+
+        // Refresh data
+        async function refreshAllData() {
+            const success = await DataService.refreshAllData();
+            alert(success ? 'Data refreshed!' : 'Error refreshing data');
+            loadCacheStatus();
+        }
+
+        // Preview functions
+        async function previewProducts() {
+            const data = await DataService.getProducts();
+            document.getElementById('data-preview').textContent = JSON.stringify(data, null, 2);
+        }
+
+        async function previewNews() {
+            const data = await DataService.getNews();
+            document.getElementById('data-preview').textContent = JSON.stringify(data, null, 2);
+        }
+
+        async function previewGallery() {
+            const data = await DataService.getGallery();
+            document.getElementById('data-preview').textContent = JSON.stringify(data, null, 2);
+        }
+
+        async function previewSettings() {
+            const data = await DataService.getSettings();
+            document.getElementById('data-preview').textContent = JSON.stringify(data, null, 2);
+        }
+
+        // Initial load
+        loadCacheStatus();
+    </script>
+</body>
+
+</html>
