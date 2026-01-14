@@ -1,7 +1,3 @@
-/* ==========================================
-   NEWS PAGE
-   ========================================== */
-
 document.addEventListener('DOMContentLoaded', function() {
     const newsArticles = document.getElementById('news-articles');
     if (newsArticles) {
@@ -13,7 +9,6 @@ async function loadAllNews() {
     const container = document.getElementById('news-articles');
     if (!container) return;
     
-    // Show loading
     container.innerHTML = '<p style="text-align: center; color: var(--color-text-medium);">Načítavam novinky...</p>';
     
     try {

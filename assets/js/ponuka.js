@@ -1,7 +1,3 @@
-/* ==========================================
-   PRODUCTS PAGE - FILTERING
-   ========================================== */
-
 document.addEventListener('DOMContentLoaded', function() {
     const productsGrid = document.getElementById('products-grid');
     if (!productsGrid) return;
@@ -14,7 +10,6 @@ async function loadAllProducts() {
     const container = document.getElementById('products-grid');
     if (!container) return;
     
-    // Show loading
     container.innerHTML = '<p style="text-align: center; color: var(--color-text-medium); grid-column: 1/-1;">Načítavam produkty...</p>';
     
     try {
@@ -55,11 +50,8 @@ function initProductFilter() {
     
     filterButtons.forEach(button => {
         button.addEventListener('click', async function() {
-            // Update active state
             filterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
-            
-            // Filter products
             const category = this.getAttribute('data-category');
             await filterProducts(category);
         });

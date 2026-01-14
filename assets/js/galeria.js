@@ -1,7 +1,3 @@
-/* ==========================================
-   GALLERY PAGE WITH LIGHTBOX
-   ========================================== */
-
 let currentImageIndex = 0;
 let galleryImages = [];
 

@@ -1,8 +1,3 @@
-/* ==========================================
-   DATA SERVICE - UNIFIED FETCH PATTERN
-   Reads from local JSON files, easy to switch to API
-   ========================================== */
-
 const DataService = {
     
     /* ==========================================
@@ -10,19 +5,13 @@ const DataService = {
        ========================================== */
     
     config: {
-        // For local development - reads from /data/ folder
-        mode: 'local', // 'local' or 'api'
+        mode: 'local', 
         localBasePath: 'data/',
         apiBasePath: '/api/',
-        useCache: true, // Enable/disable caching
+        useCache: true,
         cachePrefix: 'cukraren_',
         cacheDuration: 3600000 // 1 hour in milliseconds
     },
-    
-    /* ==========================================
-       UNIFIED FETCH FUNCTION
-       Works for both local files and API
-       ========================================== */
     
     async fetch(endpoint, options = {}) {
         const {
@@ -34,7 +23,6 @@ const DataService = {
         const cacheKey = this.config.cachePrefix + endpoint.replace('.json', '');
         
         try {
-            // For GET requests, check cache first
             if (method === 'GET' && useCache) {
                 const cached = this.getFromCache(cacheKey);
                 if (cached) {
@@ -43,7 +31,6 @@ const DataService = {
                 }
             }
             
-            // Determine URL based on mode
             const baseURL = this.config.mode === 'local' 
                 ? this.config.localBasePath 
                 : this.config.apiBasePath;
@@ -52,7 +39,6 @@ const DataService = {
             
             console.log(`→ Fetching: ${url}`);
             
-            // Prepare fetch options
             const fetchOptions = {
                 method: method,
                 headers: {
@@ -64,7 +50,6 @@ const DataService = {
                 fetchOptions.body = JSON.stringify(body);
             }
             
-            // Fetch data
             const response = await fetch(url, fetchOptions);
             
             if (!response.ok) {
@@ -73,7 +58,6 @@ const DataService = {
             
             const data = await response.json();
             
-            // Cache GET responses
             if (method === 'GET' && useCache) {
                 this.saveToCache(cacheKey, data);
             }
@@ -84,7 +68,6 @@ const DataService = {
         } catch (error) {
             console.error(`✗ Fetch error [${endpoint}]:`, error.message);
             
-            // Try to return cached data as fallback
             if (useCache) {
                 const cached = this.getFromCache(cacheKey);
                 if (cached) {
@@ -97,19 +80,13 @@ const DataService = {
         }
     },
     
-    /* ==========================================
-       CACHE HELPERS
-       ========================================== */
-    
     getFromCache(key) {
         try {
             const cached = localStorage.getItem(key);
             if (!cached) return null;
             
             const data = JSON.parse(cached);
-            
-            // Check if cache has expired
-            if (data.timestamp) {
+                if (data.timestamp) {
                 const now = Date.now();
                 const age = now - data.timestamp;
                 
@@ -145,7 +122,6 @@ const DataService = {
             localStorage.removeItem(this.config.cachePrefix + key);
             console.log(`✓ Cache cleared: ${key}`);
         } else {
-            // Clear all cache with prefix
             Object.keys(localStorage).forEach(storageKey => {
                 if (storageKey.startsWith(this.config.cachePrefix)) {
                     localStorage.removeItem(storageKey);
@@ -155,25 +131,16 @@ const DataService = {
         }
     },
     
-    /* ==========================================
-       SAVE FUNCTION (for admin)
-       In 'local' mode: saves to localStorage
-       In 'api' mode: sends POST/PUT request
-       ========================================== */
-    
     async save(endpoint, data, method = 'POST') {
         if (this.config.mode === 'local') {
-            // Local mode: save to localStorage with timestamp
             const key = this.config.cachePrefix + endpoint.replace('.json', '');
             this.saveToCache(key, data);
             console.log(`✓ Saved to localStorage: ${key}`);
             
-            // Simulate network delay for realism
             await new Promise(resolve => setTimeout(resolve, 200));
             
             return { success: true, data: data };
         } else {
-            // API mode: send to backend
             try {
                 const response = await this.fetch(endpoint, {
                     method: method,
@@ -187,17 +154,11 @@ const DataService = {
         }
     },
     
-    /* ==========================================
-       IMAGE HELPER
-       Validates and provides fallback for images
-       ========================================== */
-    
     getImageUrl(imagePath, type = 'general') {
         if (!imagePath) {
             return this.getFallbackImage(type);
         }
         
-        // In API mode, prepend base URL if needed
         if (this.config.mode === 'api' && !imagePath.startsWith('http')) {
             return this.config.apiBasePath.replace('/api/', '') + imagePath;
         }
@@ -215,16 +176,10 @@ const DataService = {
         
         return fallbacks[type] || fallbacks.general;
     },
-    
-    /* ==========================================
-       PRODUCTS API
-       ========================================== */
-    
-    async getProducts() {
+
+        async getProducts() {
         const products = await this.fetch('produkty.json');
-        
-        // Process image URLs
-        return products.map(product => ({
+            return products.map(product => ({
             ...product,
             image: this.getImageUrl(product.image, 'product')
         }));
@@ -267,14 +222,9 @@ const DataService = {
         return result.success;
     },
     
-    /* ==========================================
-       NEWS API
-       ========================================== */
-    
     async getNews() {
         const news = await this.fetch('novinky.json');
         
-        // Process image URLs and sort by date (newest first)
         return news
             .map(item => ({
                 ...item,
@@ -321,10 +271,6 @@ const DataService = {
         return result.success;
     },
     
-    /* ==========================================
-       GALLERY API
-       ========================================== */
-    
     async getGallery() {
         const gallery = await this.fetch('galerie.json');
         
@@ -356,17 +302,12 @@ const DataService = {
         return result.success;
     },
     
-    /* ==========================================
-       SETTINGS API
-       ========================================== */
-    
     async getSettings() {
         try {
             return await this.fetch('nastavenia.json');
         } catch (error) {
             console.log('Settings file not found, creating default...');
             
-            // Return default settings if file doesn't exist
             const defaultSettings = {
                 shopName: 'Cukráreň Janka',
                 address: 'Hlavná 123',
@@ -391,10 +332,6 @@ const DataService = {
         return result.success ? settings : null;
     },
     
-    /* ==========================================
-       UTILITY: Force Refresh All Data
-       ========================================== */
-    
     async refreshAllData() {
         console.log('🔄 Refreshing all data from source...');
         
@@ -415,10 +352,6 @@ const DataService = {
             return false;
         }
     },
-    
-    /* ==========================================
-       UTILITY: Get Cache Status
-       ========================================== */
     
     getCacheStatus() {
         const keys = Object.keys(localStorage).filter(key => 
@@ -449,7 +382,6 @@ const DataService = {
     }
 };
 
-// Backward compatibility wrapper
 const Storage = {
     getProducts: () => DataService.getProducts(),
     addProduct: (product) => DataService.addProduct(product),

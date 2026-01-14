@@ -1,19 +1,13 @@
-/* ==========================================
-   MAIN JAVASCRIPT - CUKRÁREŇ JANKA
-   ========================================== */
-
 document.addEventListener('DOMContentLoaded', function() {
     
     initMobileMenu();
     initSmoothScroll();
     initContactForm();
     
-    // Load home page products if on home page
     if (document.getElementById('home-products')) {
         loadHomeProducts();
     }
-    
-    // Load home page news if on home page
+
     if (document.getElementById('home-news')) {
         loadHomeNews();
     }
@@ -23,10 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
     loadAbout();
 
 });
-
-/* ==========================================
-   MOBILE MENU
-   ========================================== */
 
 function initMobileMenu() {
     const menuToggle = document.querySelector('.menu-toggle');
@@ -38,11 +28,10 @@ function initMobileMenu() {
         menuToggle.classList.toggle('active');
         navMenu.classList.toggle('active');
         
-        // Prevent body scroll when menu is open
+
         document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
     });
     
-    // Close menu when clicking on a link
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
@@ -52,7 +41,6 @@ function initMobileMenu() {
         });
     });
     
-    // Close menu when clicking outside
     document.addEventListener('click', function(event) {
         if (!menuToggle.contains(event.target) && !navMenu.contains(event.target)) {
             menuToggle.classList.remove('active');
@@ -61,10 +49,6 @@ function initMobileMenu() {
         }
     });
 }
-
-/* ==========================================
-   SMOOTH SCROLL
-   ========================================== */
 
 function initSmoothScroll() {
     const links = document.querySelectorAll('a[href^="#"]');
@@ -86,68 +70,20 @@ function initSmoothScroll() {
     });
 }
 
-/* ==========================================
-   CONTACT FORM
-   ========================================== */
+//   LOAD HOME PRODUCTS (ASYNC)
 
-function initContactForm() {
-    const contactForm = document.getElementById('contact-form');
-    if (!contactForm) return;
-    
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Get form data
-        const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            phone: document.getElementById('phone').value,
-            message: document.getElementById('message').value
-        };
-        
-        // Validate
-        if (!formData.name || !formData.email || !formData.message) {
-            showFormMessage('Prosím vyplňte všetky povinné polia.', 'error');
-            return;
-        }
-        
-        // Simulate form submission (in production, send to backend)
-        setTimeout(() => {
-            showFormMessage('Ďakujeme za vašu správu! Ozveme sa vám čoskoro.', 'success');
-            contactForm.reset();
-        }, 500);
-    });
-}
-
-function showFormMessage(message, type) {
-    const formMessage = document.getElementById('form-message');
-    if (!formMessage) return;
-    
-    formMessage.textContent = message;
-    formMessage.className = `form-message ${type}`;
-    formMessage.style.display = 'block';
-    
-    setTimeout(() => {
-        formMessage.style.display = 'none';
-    }, 5000);
-}
-
-/* ==========================================
-   LOAD HOME PRODUCTS (ASYNC)
-   ========================================== */
 
 async function loadHomeProducts() {
     const container = document.getElementById('home-products');
     if (!container) return;
     
-    // Show loading
+    
     container.innerHTML = '<p style="text-align: center; color: var(--color-text-medium);">Načítavam produkty...</p>';
     
     try {
-        // Fetch products from data source
+
         const products = await DataService.getProducts();
         
-        // Show only first 6 products on home page
         const featuredProducts = products.slice(0, 6);
         
         if (featuredProducts.length === 0) {
@@ -173,22 +109,20 @@ async function loadHomeProducts() {
     }
 }
 
-/* ==========================================
-   LOAD HOME NEWS (ASYNC)
-   ========================================== */
+//   LOAD HOME NEWS
 
 async function loadHomeNews() {
     const container = document.getElementById('home-news');
     if (!container) return;
     
-    // Show loading
+
     container.innerHTML = '<p style="text-align: center; color: var(--color-text-medium);">Načítavam novinky...</p>';
     
     try {
-        // Fetch news from data source
+        
         const news = await DataService.getNews();
         
-        // Show only first 3 news on home page
+        
         const recentNews = news.slice(0, 3);
         
         if (recentNews.length === 0) {
@@ -214,9 +148,8 @@ async function loadHomeNews() {
         container.innerHTML = '<p style="text-align: center; color: var(--color-text-medium);">Chyba pri načítaní noviniek.</p>';
     }
 }
-/* ==========================================
-   LOAD HERO
-   ========================================== */
+
+//   LOAD HERO
 async function loadHero() {
     const hero = document.getElementById('hero-section');
     if (!hero) return;
@@ -243,9 +176,8 @@ async function loadHero() {
         console.error('Hero load failed', err);
     }
 }
-/* ==========================================
-   LOAD FREATURED
-   ========================================== */
+//   LOAD FREATURED
+
 async function loadFeatured() {
     const container = document.getElementById('featured-section');
     if (!container) return;
@@ -267,9 +199,7 @@ async function loadFeatured() {
         console.error('Featured load failed', err);
     }
 }
-/* ==========================================
-   LOAD ABOUT
-   ========================================== */
+//   LOAD ABOUT
 async function loadAbout() {
     const container = document.getElementById('about-section');
     if (!container) return;
@@ -301,21 +231,17 @@ async function loadAbout() {
 /* ==========================================
    UTILITY FUNCTIONS
    ========================================== */
-
-// Format date to Slovak format
 function formatDate(dateString) {
     const date = new Date(dateString);
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return date.toLocaleDateString('sk-SK', options);
 }
 
-// Truncate text
 function truncateText(text, maxLength) {
     if (text.length <= maxLength) return text;
     return text.substring(0, maxLength) + '...';
 }
 
-// Generate unique ID
 function generateId() {
     return 'id_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
 }
