@@ -175,7 +175,7 @@ function initGalleryForm() {
         e.preventDefault();
         const galleryData = {
             title: document.getElementById('gallery-title').value,
-            image: document.getElementById('gallery-image').value || '../assets/images/galeria/placeholder.jpg'
+            image: document.getElementById('gallery-image').value || '../assets/images/galeria/placeholder.png'
         };
 
         try {

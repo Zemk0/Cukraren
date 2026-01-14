@@ -1,0 +1,20 @@
+[
+    {
+        "title": "Šachové Rezy",
+        "description": "Klasický dezert s vanilkovým a kakaovým krémom",
+        "image": "assets/images/produkty/obrazok.png",
+        "alt": "Šachové rezy"
+    },
+    {
+        "title": "Orechové Koláče",
+        "description": "Domáce koláče s orechovým posypom",
+        "image": "assets/images/produkty/obrazok.png",
+        "alt": "Orechové koláče"
+    },
+    {
+        "title": "Čerstvé Pečivo",
+        "description": "Denne čerstvé koláče a zákusky",
+        "image": "assets/images/produkty/obrazok.png",
+        "alt": "Čerstvé pečivo"
+    }
+]

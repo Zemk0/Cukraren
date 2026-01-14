@@ -18,7 +18,7 @@
     }
 
     .menu-toggle {
-        display: flex;
+        display: flex !important;
     }
     
     .nav-menu {

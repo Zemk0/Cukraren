@@ -4,7 +4,7 @@
         "subtitle": "Viac ako 30 rokov tradície a kvality"
     },
     "storySection": {
-        "image": "assets/images/banner/placeholder.png",
+        "image": "assets/images/banner/obrazok.png",
         "imageAlt": "Cukráreň Janka - začiatky",
         "title": "Začiatky",
         "paragraphs": [
@@ -62,14 +62,14 @@
             "name": "Jana Nitschneiderová",
             "role": "Zakladateľka",
             "description": "Duša a srdce cukrárne.",
-            "image": "assets/images/banner/placeholder.png",
+            "image": "assets/images/banner/janka.png",
             "alt": "Jana - zakladateľka"
         },
         {
             "name": "Peter Šimek",
             "role": "Chovateľ",
             "description": "Chovateľ rýb v našom akváriu.",
-            "image": "assets/images/banner/placeholder.png",
+            "image": "assets/images/banner/peter.png",
             "alt": "Peter - chovateľ"
         }
     ]

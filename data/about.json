@@ -1,0 +1,11 @@
+{
+    "title": "O Nás",
+    "paragraphs": [
+        "Cukráreň Janka je rodinný podnik s dlhoročnou tradíciou.",
+        "Používame len kvalitné suroviny a tradičné recepty."
+    ],
+    "image": "assets/images/banner/obrazok.png",
+    "imageAlt": "Cukráreň Janka interiér",
+    "buttonText": "Náš príbeh",
+    "buttonLink": "pribeh.html"
+}

@@ -17,6 +17,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('home-news')) {
         loadHomeNews();
     }
+
+    loadHero();
+    loadFeatured();
+    loadAbout();
+
 });
 
 /* ==========================================
@@ -209,6 +214,89 @@ async function loadHomeNews() {
         container.innerHTML = '<p style="text-align: center; color: var(--color-text-medium);">Chyba pri načítaní noviniek.</p>';
     }
 }
+/* ==========================================
+   LOAD HERO
+   ========================================== */
+async function loadHero() {
+    const hero = document.getElementById('hero-section');
+    if (!hero) return;
+
+    try {
+        const res = await fetch('data/hero.json');
+        const data = await res.json();
+
+        hero.innerHTML = `
+            <div class="hero-content">
+                <div class="hero-image">
+                    <img src="${data.image}" alt="${data.imageAlt}">
+                    <div class="hero-overlay">
+                        <h2 class="hero-title">${data.title}</h2>
+                        <p class="hero-subtitle">${data.subtitle}</p>
+                        <a href="${data.buttonLink}" class="btn-hero">
+                            ${data.buttonText}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        `;
+    } catch (err) {
+        console.error('Hero load failed', err);
+    }
+}
+/* ==========================================
+   LOAD FREATURED
+   ========================================== */
+async function loadFeatured() {
+    const container = document.getElementById('featured-section');
+    if (!container) return;
+
+    try {
+        const res = await fetch('data/featured.json');
+        const data = await res.json();
+
+        container.innerHTML = data.map(item => `
+            <div class="featured-card">
+                <div class="featured-image">
+                    <img src="${item.image}" alt="${item.alt}">
+                </div>
+                <h3>${item.title}</h3>
+                <p>${item.description}</p>
+            </div>
+        `).join('');
+    } catch (err) {
+        console.error('Featured load failed', err);
+    }
+}
+/* ==========================================
+   LOAD ABOUT
+   ========================================== */
+async function loadAbout() {
+    const container = document.getElementById('about-section');
+    if (!container) return;
+
+    try {
+        const res = await fetch('data/about.json');
+        const data = await res.json();
+
+        container.innerHTML = `
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">${data.title}</h2>
+                    ${data.paragraphs.map(p => `<p>${p}</p>`).join('')}
+                    <a href="${data.buttonLink}" class="btn-primary">
+                        ${data.buttonText}
+                    </a>
+                </div>
+                <div class="about-image">
+                    <img src="${data.image}" alt="${data.imageAlt}">
+                </div>
+            </div>
+        `;
+    } catch (err) {
+        console.error('About load failed', err);
+    }
+}
+
 
 /* ==========================================
    UTILITY FUNCTIONS
