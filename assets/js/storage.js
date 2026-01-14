@@ -44,7 +44,7 @@ const DataService = {
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            };
+            }; 
             
             if (body && method !== 'GET') {
                 fetchOptions.body = JSON.stringify(body);
