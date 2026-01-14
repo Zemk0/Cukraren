@@ -50,7 +50,7 @@ async function displayNewsList() {
             <tr>
                 <td>${item.title}</td>
                 <td>${formatDate(item.date)}</td>
-                <td><img src="${item.image}" alt="${item.title}" style="width: 80px; height: 60px; object-fit: cover; border-radius: 4px;" onerror="this.src='../assets/images/galeria/placeholder.jpg'"></td>
+                <td><img src="${"../"+item.image}" alt="${item.title}" style="width: 80px; height: 60px; object-fit: cover; border-radius: 4px;" onerror="this.src='../assets/images/galeria/placeholder.jpg'"></td>
                 <td class="admin-table-actions">
                     <button class="btn-edit" onclick="editNews('${item.id}')">Upraviť</button>
                     <button class="btn-remove" onclick="deleteNews('${item.id}')">Zmazať</button>
@@ -154,7 +154,7 @@ async function displayGalleryList() {
 
         container.innerHTML = gallery.map(item => `
             <tr>
-                <td><img src="${item.image}" alt="${item.title}" style="width: 100px; height: 80px; object-fit: cover; border-radius: 4px;" onerror="this.src='../assets/images/galeria/placeholder.jpg'"></td>
+                <td><img src="${"../"+item.image}" alt="${item.title}" style="width: 100px; height: 80px; object-fit: cover; border-radius: 4px;" onerror="this.src='../assets/images/galeria/placeholder.png'"></td>
                 <td>${item.title}</td>
                 <td class="admin-table-actions">
                     <button class="btn-remove" onclick="deleteGalleryItem('${item.id}')">Zmazať</button>

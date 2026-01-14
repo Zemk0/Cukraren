@@ -207,10 +207,10 @@ const DataService = {
     
     getFallbackImage(type) {
         const fallbacks = {
-            product: 'assets/images/produkty/placeholder.jpg',
-            news: 'assets/images/galeria/placeholder.jpg',
-            gallery: 'assets/images/galeria/placeholder.jpg',
-            general: 'assets/images/placeholder.jpg'
+            product: '/assets/images/produkty/placeholder.jpg',
+            news: '/assets/images/galeria/placeholder.jpg',
+            gallery: '/assets/images/galeria/placeholder.jpg',
+            general: '/assets/images/placeholder.jpg'
         };
         
         return fallbacks[type] || fallbacks.general;
