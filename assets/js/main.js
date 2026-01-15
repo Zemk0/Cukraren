@@ -1,13 +1,17 @@
+/* ==========================================
+   MAIN JAVASCRIPT - CUKRÁREŇ JANKA
+   ========================================== */
+
 document.addEventListener('DOMContentLoaded', function() {
     
     initMobileMenu();
     initSmoothScroll();
-    initContactForm();
-    
+    // Load home page products if on home page
     if (document.getElementById('home-products')) {
         loadHomeProducts();
     }
-
+    
+    // Load home page news if on home page
     if (document.getElementById('home-news')) {
         loadHomeNews();
     }
@@ -18,34 +22,67 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
+/* ==========================================
+   MOBILE MENU
+   ========================================== */
+
 function initMobileMenu() {
     const menuToggle = document.querySelector('.menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
     
-    if (!menuToggle || !navMenu) return;
+    if (!menuToggle || !navMenu) {
+        console.error('Menu elements not found');
+        return;
+    }
     
-    menuToggle.addEventListener('click', function() {
+    // Toggle menu on button click
+    menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation(); // Prevent event bubbling
+        
         menuToggle.classList.toggle('active');
         navMenu.classList.toggle('active');
         
-
-        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        // Prevent body scroll when menu is open
+        if (navMenu.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        
+        console.log('Menu toggled:', navMenu.classList.contains('active'));
     });
     
+    // Close menu when clicking on a link
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
             menuToggle.classList.remove('active');
             navMenu.classList.remove('active');
             document.body.style.overflow = '';
+            console.log('Menu closed via link click');
         });
     });
     
+    // Close menu when clicking outside
     document.addEventListener('click', function(event) {
-        if (!menuToggle.contains(event.target) && !navMenu.contains(event.target)) {
+        const isClickInsideMenu = navMenu.contains(event.target);
+        const isClickOnToggle = menuToggle.contains(event.target);
+        
+        if (!isClickInsideMenu && !isClickOnToggle && navMenu.classList.contains('active')) {
             menuToggle.classList.remove('active');
             navMenu.classList.remove('active');
             document.body.style.overflow = '';
+            console.log('Menu closed via outside click');
+        }
+    });
+    
+    // Close menu on ESC key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && navMenu.classList.contains('active')) {
+            menuToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.style.overflow = '';
+            console.log('Menu closed via ESC key');
         }
     });
 }
