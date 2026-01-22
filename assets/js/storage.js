@@ -1,16 +1,12 @@
 const DataService = {
     
-    /* ==========================================
-       CONFIGURATION
-       ========================================== */
-    
     config: {
         mode: 'local', 
         localBasePath: 'data/',
         apiBasePath: '/api/',
         useCache: true,
         cachePrefix: 'cukraren_',
-        cacheDuration: 3600000 // 1 hour in milliseconds
+        cacheDuration: 3600000
     },
     
     async fetch(endpoint, options = {}) {

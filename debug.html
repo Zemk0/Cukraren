@@ -86,10 +86,8 @@
 
     <script src="assets/js/storage.js"></script>
     <script>
-        // Display configuration
         document.getElementById('config').textContent = JSON.stringify(DataService.config, null, 2);
 
-        // Load cache status
         function loadCacheStatus() {
             const status = DataService.getCacheStatus();
             const container = document.getElementById('cache-status');
@@ -109,7 +107,6 @@
             `).join('');
         }
 
-        // Clear cache
         function clearAllCache() {
             if (confirm('Clear all cached data?')) {
                 DataService.clearCache();
@@ -118,14 +115,12 @@
             }
         }
 
-        // Refresh data
         async function refreshAllData() {
             const success = await DataService.refreshAllData();
             alert(success ? 'Data refreshed!' : 'Error refreshing data');
             loadCacheStatus();
         }
 
-        // Preview functions
         async function previewProducts() {
             const data = await DataService.getProducts();
             document.getElementById('data-preview').textContent = JSON.stringify(data, null, 2);
@@ -146,7 +141,6 @@
             document.getElementById('data-preview').textContent = JSON.stringify(data, null, 2);
         }
 
-        // Initial load
         loadCacheStatus();
     </script>
 </body>
